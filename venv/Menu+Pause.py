@@ -77,7 +77,7 @@ def start_the_game():
         for event in pygame.event.get():
             key_pr = pygame.key.get_pressed()
             if key_pr[pygame.K_ESCAPE]:
-                pygame.quit()
+                pause()
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
