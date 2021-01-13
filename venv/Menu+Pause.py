@@ -29,6 +29,36 @@ def start_the_game():
         image = pygame.image.load(fullname)
         return image
 
+    def pause():
+        paused = True
+        load_image('fon1.jpg')
+        intro_text = ["Пауза", "",
+                      "",
+                      "Нажмите 'с' чтобы продолжить,",
+                      "Нажмите 'q' чтобы выйти"]
+        fon = pygame.transform.scale(load_image('fon1.jpg'), (width, height))
+        screen.blit(fon, (0, 0))
+        font = pygame.font.Font(None, 30)
+        text_coord = 50
+        for line in intro_text:
+            string_rendered = font.render(line, 1, pygame.Color('black'))
+            intro_rect = string_rendered.get_rect()
+            text_coord += 10
+            intro_rect.top = text_coord
+            intro_rect.x = 10
+            text_coord += intro_rect.height
+            screen.blit(string_rendered, intro_rect)
+        while paused:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_c:
+                        paused = False
+
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+                        quit()
+            pygame.display.flip()
+
     sprites = pygame.sprite.Group()
     hero_im = load_image('hero.png')
     hero = pygame.sprite.Sprite(sprites)
