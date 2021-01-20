@@ -1,1 +1,1 @@
-print('zdarovo')
+print('zdarovo qq')
