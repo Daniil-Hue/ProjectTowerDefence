@@ -2,13 +2,17 @@ import pygame
 import os
 
 tower_costs = {
-    "laser": 100,
-    "fire": 150
+    "laser": 50,
+    "fire": 100,
+    "firegunu": 150,
+    "rocketlaucher": 200
 }
 
 tower_types = [  # type, damage, radius, image_path, bullet_path
     ["laser", 50, 200, "assets/laserGun.png", "assets/laserBullet.png"],
-    ["fire", 100, 150, "assets/fireGun.png", "assets/fire.png"]
+    ["fire", 100, 150, "assets/fireGun.png", "assets/fire.png"],
+    ["rocketlaucher", 200, 300, "assets/rocketlaucher.png", "assets/rocket.png"],
+    ["firegunu", 150, 200, "assets/firegunu.png", "assets/fire1.png"]
 ]
 
 codes = [  # code, type, image_path
@@ -20,10 +24,10 @@ codes = [  # code, type, image_path
 ]
 
 enemy_type = [  # type, health, speed, path, reward
-    ["soldier", 100, 0.02, "assets/soldier.png", 10],
-    ["warrior", 200, 0.025, "assets/warrior.png", 20],
-    ["cyborg", 300, 0.03, "assets/cyborg.png", 30],
-    ["robot", 400, 0.035, "assets/robot.png", 40]
+    ["soldier", 90, 0.02, "assets/soldier.png", 10],
+    ["warrior", 180, 0.025, "assets/warrior.png", 20],
+    ["cyborg", 270, 0.03, "assets/cyborg.png", 30],
+    ["robot", 450, 0.035, "assets/robot.png", 40]
 ]
 
 balance = 0
