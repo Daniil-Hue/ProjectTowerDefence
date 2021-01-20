@@ -10,12 +10,12 @@ instructions = dict()
 enemy_delays = dict()
 
 
-def create_map(path, *tile_size): #создаём карту
+def create_map(path, *tile_size):  # создаём карту
     with open(path, 'r') as file:
         global MAP_DATA
         data = file.read().split('\n')
         MAP_DATA = [list() for _ in range(len(data))]
-        inst = data[data.index(''):]#автоматическое заполнение пропусков карты
+        inst = data[data.index(''):]  # автоматическое заполнение пропусков карты
         data = data[:data.index('')]
         max_width = max(map(len, data))
         data = list(map(lambda a: a.ljust(max_width, ' '), data))
@@ -23,7 +23,8 @@ def create_map(path, *tile_size): #создаём карту
             for x in range(max_width):
                 for i in Core.codes:
                     if data[y][x] in i:
-                        image = pygame.transform.scale(Core.load_image(i[2]), tile_size)#загрузка изображения с соотвествующим размеров
+                        image = pygame.transform.scale(Core.load_image(i[2]),
+                                                       tile_size)
                         MAP_DATA[y].append(i[1])
                         Tile(i[1], image, x, y, tile_size)
         for i in range(1, len(inst), 2):
@@ -33,3 +34,13 @@ def create_map(path, *tile_size): #создаём карту
                 for k in Core.enemy_type:
                     if k[0] == j:
                         enemy_delays[j] = k[2]
+
+
+class Tile(pygame.sprite.Sprite):#подгрузка изображений
+    def __init__(self, type, image, x, y, *tile_size):
+        super().__init__(tiles_group, all_sprites)
+        tile_size = tile_size[0]
+        self.type = type
+        self.image = image
+        self.rect = self.image.get_rect().move(
+            tile_size[0] * x, tile_size[1] * y)
