@@ -17,11 +17,11 @@ def start_the_game():
     levels = ["levels/" + i for i in os.listdir("levels/")]
     current_level = 0
 
-    size = width, height = 1280, 720
+    size = width, height = 1920, 1080
     screen = pygame.display.set_mode(size)
     running = True
 
-    Map.create_map(levels[0], 100, 100)
+    Map.create_map(levels[0], 78, 78)
 
     Gui.create_tower_buttons(100, 100, size)
 
@@ -209,9 +209,6 @@ def start_the_game():
                 lcounter -= 1
             else:
                 screen.blit(heart, (size[0] - 30 * i - 60, 10))
-        # for i in Tower.bullet_group.sprites():
-        #     pygame.draw.rect(screen, (255, 0, 0), i.image.get_rect().move(i.rect.x, i.rect.y), 3)
-        #     pygame.draw.circle(screen, (0, 255, 0), (i.rect.x, i.rect.y), 5, 4)
         if time.time() - update_timer >= 0.02:
             for i in Tower.tower_group.sprites():
                 i.update()
@@ -221,7 +218,8 @@ def start_the_game():
         for i, j in enumerate(list(Map.enemy_delays)):
             if time.time() - enemy_timers[i] >= Map.enemy_delays[j]:
                 for k in Enemy.enemy_group.sprites():
-                    k.update()
+                    if k.type == j:
+                        k.update()
                 enemy_timers[i] = time.time()
         if time.time() - shoot_timer >= 0.8:
             for i in Tower.tower_group.sprites():
@@ -237,3 +235,4 @@ menu.add_button('Начать игру', start_the_game)
 menu.add_button('Выйти', pygame_menu.events.EXIT)
 
 menu.mainloop(surface)
+
